@@ -11,7 +11,7 @@
             $conn = new PDO("mysql:host=$host;dbname=".$dbName, $userName, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            echo "Connection Successfully established";
+            //echo "Connection Successfully established";
             
         } catch (PDOException $err) {
             echo"Connection failure: " . $err->getMessage();
@@ -27,5 +27,3 @@
         $result->execute();
 
         $row = $result->fetch(\PDO::FETCH_ASSOC);
-
-        echo $row['clientID'];
