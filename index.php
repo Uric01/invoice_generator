@@ -1,9 +1,10 @@
 <?php
 
+include 'dtb.php';
+
 require('fpdf184/fpdf.php');
 
 $pdf = new FPDF();
-
 
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 12);
@@ -94,8 +95,6 @@ $pdf->Cell(0, 10, 'If you have any questions concerning this tax invoice, Contac
 $pdf->SetFont('Arial', 'I', 8);
 // Page number
 $pdf->Cell(0, 10, 'Page ' . $pdf->PageNo(), 0, 0, 'C');
-
-
 
 $pdf->Output();
 
