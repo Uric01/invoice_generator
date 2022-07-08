@@ -8,15 +8,14 @@ require('fpdf184/fpdf.php');
 $pdf = new FPDF();
 $pdf->AddPage();
 
+$lineCount = 0;
+
 $invoiceRef = $row['invoiceID'];
 $date = $row['date'];
 $clientID = $row['clientID'];
-$item[] = $row['item'];
-$amount = $row['amount'];
-$qty = $row['qty'];
-$lineTotal = $amount * $qty;
-$vat = (($lineTotal * $qty)/0.85) - $lineTotal;
-$total = $vat + $lineTotal;
+$vat = 0;
+$total = 0;
+
 
 $pdf->SetFont('Arial', '', 12);
 $pdf->Image('logo.png', 10, 5, 80, 30, 'PNG', "https://shopacer.co.za/");
@@ -28,7 +27,7 @@ $pdf->cell(39, 5, 'Tax Invoice', 0, 0);
 $pdf->cell(39, 5, ': '.$invoiceRef, 0, 1);
 $pdf->SetFont('Arial', '', 35);
 $pdf->cell(120, 20, '', 0, 0);
-$pdf->cell(39, 20, $total, 0, 1);
+$pdf->cell(39, 20,  'R'.round($total,2), 0, 1);
 $pdf->Ln(10);
 $pdf->SetFont('Arial', '', 12);
 $pdf->cell(120, 5, 'Tax invoice to:', 0, 0, 'L');
@@ -59,19 +58,41 @@ $pdf->cell(60, 5, 'Item', 0, 0);
 $pdf->cell(40, 5, 'Price ex vat', 0, 0);
 $pdf->cell(26, 5, 'Line Total', 0, 1);
 $pdf->Line(12, 115, 197, 115);
-$pdf->cell(22, 5, $qty, 0, 0);
-$pdf->cell(34, 5, $item['SKU'], 0, 0);
-$pdf->cell(60, 5, $item['product'], 0, 0);
-$pdf->cell(40, 5, $amount, 0, 0);
-$pdf->cell(26, 5, $lineTotal, 0, 1);
+
+$arr[] = "";
+foreach ($row as $rows){
+
+    $lineCount +=5;
+    
+    $arr = json_decode($rows['item'], true);
+    
+    $priceExVat = ($rows['amount']/1.15); //single product amount 
+
+    $qty = $rows['qty'];
+    $lineTotal = $priceExVat * $qty;
+
+    $vat += (($lineTotal * $qty)/0.85) - $lineTotal;
+    $total += $vat + $lineTotal;
+
+    $pdf->cell(22, 5, $qty, 0, 0);
+    $pdf->cell(34, 5, $arr['SKU'], 0, 0);
+    $pdf->cell(60, 5, $arr['product'], 0, 0);
+    $pdf->cell(40, 5, 'R'.round($priceExVat,2), 0, 0);
+    $pdf->cell(26, 5, 'R'.round($lineTotal,2), 0, 1);
+
+
+}
+
+
+
 $pdf->Line(12, 200, 197, 200);
 $pdf->Ln(80);
 $pdf->cell(120, 10, '', 0, 0);
 $pdf->cell(40, 10, 'VAT', 0, 0);
-$pdf->cell(26, 10, $vat, 0, 1);
+$pdf->cell(26, 10, 'R'.round($vat,2), 0, 1);
 $pdf->cell(120, 10, '', 0, 0);
 $pdf->cell(40, 10, 'TOTAL', 0, 0);
-$pdf->cell(26, 10, $total, 0, 1);
+$pdf->cell(26, 10, 'R'.round($total,2), 0, 1);
 $pdf->Line(10, 220, 200, 220);
 $pdf->Ln(2);
 $pdf->cell(123, 5, 'PAYMENT DETAILS:', 0, 0, 'L');

@@ -18,11 +18,11 @@
         }
 
 
-        $sql = "SELECT * FROM invoice WHERE invoiceID =?";
+        $sql = "SELECT * FROM invoice";
 
         $result = $conn->prepare($sql);
-        $a = 1;
-        $result->bindParam(1, $a);
+       /* $a = 1;
+        $result->bindParam(1, $a);*/
 
         $result->execute();
 
