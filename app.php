@@ -23,4 +23,6 @@ echo "SKU is: ";
 echo $x['SKU'];
 
 
-
+$json = [
+    {"qty":"3","SKU":"NX.HGDM3.001","product":"Acer Aspire 3 15.6 celeron", "price":"10000"},{"qty":"1","SKU":"NX.FHJF8.001","product":"Acer Predator 300 15.6 i7", "price":"30000"},{"qty":"5","SKU":"NX.0000.001","product":"Acer ConceptD 3 16.6 i7", "price":"46000"}
+];

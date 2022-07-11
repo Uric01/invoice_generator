@@ -5,9 +5,10 @@ include 'dtb.php';
 require('fpdf184/fpdf.php');
 
 
+
+
 $pdf = new FPDF();
 $pdf->AddPage();
-
 
 
 $pdf->SetFont('Arial', '', 12);
@@ -53,53 +54,49 @@ $pdf->cell(26, 5, 'Line Total', 0, 1);
 $pdf->Line(12, 115, 197, 115);
 
 
-$x = 0;
-
 for($i = 0; $i < count($arr); $i++)
 {
-//////
 
-    $pdf->cell(22, 5,  $arr[$i]['qty'], 0, 0, 'C');
+    $pdf->cell(22, 5,$arr[$i]['qty'], 0, 0, 'C');
     $pdf->cell(34, 5,$arr[$i]['SKU'], 0, 0);
-    $pdf->cell(60, 5, $arr[$i]['product'], 0, 0);
+    $pdf->cell(60, 5,$arr[$i]['product'], 0, 0);
     $pdf->cell(40, 5, 'R '.round($arr[$i]['price'],2), 0, 0);
     $pdf->cell(26, 5, 'R '.round($arr[$i]['price']*$arr[$i]['qty'],2), 0, 1);
-   
-$x += $i * 2;
 
+    $x += $i * 5;
 } 
 
 
-$pdf->Line(12, 200+$x, 197, 200+$x);
-$pdf->Ln(80+$x);
-$pdf->cell(120, 10+$x, '', 0, 0);
-$pdf->cell(40, 10+$x, 'VAT', 0, 0);
-$pdf->cell(26, 10+$x, 'R '.round($vat,2), 0, 1);
-$pdf->cell(120, 10+$x, '', 0, 0);
-$pdf->cell(40, 10+$x, 'TOTAL', 0, 0);
-$pdf->cell(26, 10+$x, 'R '.round($total,2), 0, 1);
-$pdf->Line(10, 220+$x, 200, 220+$x);
-$pdf->Ln(2+$x);
-$pdf->cell(123, 5+$x, 'PAYMENT DETAILS:', 0, 0, 'L');
-$pdf->cell(39, 5+$x, 'OTHER INFORMATION', 0, 1);
-$pdf->cell(39, 5+$x, 'Name of beneficiary', 0, 0);
-$pdf->cell(84, 5+$x, ': Brand Hubb', 0, 0);
-$pdf->cell(40, 5+$x, 'Shop Acer', 0, 1);
-$pdf->cell(39, 5+$x, 'Name of Bank', 0, 0);
-$pdf->cell(84, 5+$x, ': Standard Bank', 0, 0);
-$pdf->cell(39, 5+$x, 'Phone', 0, 0);
-$pdf->cell(30, 5+$x, ': 010 020 8606', 0, 1);
-$pdf->cell(39, 5+$x, 'Address of Bank', 0, 0);
-$pdf->cell(84, 5+$x, ': Sunninghill', 0, 0);
-$pdf->cell(39, 5+$x, 'www.shopacer.co.za', 0, 1);
-$pdf->cell(39, 5+$x, 'Account Number', 0, 0);
-$pdf->cell(84, 5+$x, ': 35-28-546-1', 0, 0);
-$pdf->cell(39, 5+$x, 'zweli@shopacer.co.za', 0, 1);
-$pdf->cell(39, 5+$x, 'SWIFT Code', 0, 0);
-$pdf->cell(39, 5+$x, ': SB-ZA-ZA-JJ', 0, 1);
-$pdf->cell(39, 5+$x, 'Payment reference', 0, 0);
-$pdf->cell(84, 5+$x, ': #20220704AZ1', 0, 0);
-$pdf->Line(10, 259+$x, 200, 259+$x);
+$pdf->Line(12, 125+$x, 197, 125+$x);
+$pdf->Ln(80 );
+$pdf->cell(120, 10 , '', 0, 0);
+$pdf->cell(40, 10 , 'VAT', 0, 0);
+$pdf->cell(26, 10 , 'R '.round($vat,2), 0, 1);
+$pdf->cell(120, 10 , '', 0, 0);
+$pdf->cell(40, 10 , 'TOTAL', 0, 0);
+$pdf->cell(26, 10 , 'R '.round($total,2), 0, 1);
+$pdf->Line(10, 228 , 200, 228 );
+$pdf->Ln(2 );
+$pdf->cell(123, 5 , 'PAYMENT DETAILS:', 0, 0, 'L');
+$pdf->cell(39, 5 , 'OTHER INFORMATION', 0, 1);
+$pdf->cell(39, 5 , 'Name of beneficiary', 0, 0);
+$pdf->cell(84, 5 , ': Brand Hubb', 0, 0);
+$pdf->cell(40, 5 , 'Shop Acer', 0, 1);
+$pdf->cell(39, 5 , 'Name of Bank', 0, 0);
+$pdf->cell(84, 5 , ': Standard Bank', 0, 0);
+$pdf->cell(39, 5 , 'Phone', 0, 0);
+$pdf->cell(30, 5 , ': 010 020 8606', 0, 1);
+$pdf->cell(39, 5 , 'Address of Bank', 0, 0);
+$pdf->cell(84, 5 , ': Sunninghill', 0, 0);
+$pdf->cell(39, 5 , 'www.shopacer.co.za', 0, 1);
+$pdf->cell(39, 5 , 'Account Number', 0, 0);
+$pdf->cell(84, 5 , ': 35-28-546-1', 0, 0);
+$pdf->cell(39, 5 , 'zweli@shopacer.co.za', 0, 1);
+$pdf->cell(39, 5 , 'SWIFT Code', 0, 0);
+$pdf->cell(39, 5 , ': SB-ZA-ZA-JJ', 0, 1);
+$pdf->cell(39, 5 , 'Payment reference', 0, 0);
+$pdf->cell(84, 5 , ': #20220704AZ1', 0, 0);
+$pdf->Line(10, 269 , 200, 269 );
 
 
 // Position at 4.1 cm from bottom
@@ -108,16 +105,14 @@ $pdf->SetY(-41);
 $pdf->SetFont('Arial', 'I', 9);
 // Text color in gray
 $pdf->SetTextColor(128);
-$pdf->Cell(0, 10+$x, 'If you have any questions concerning this tax invoice, Contact us on support@shopacer.co.za or 010 020 8606', 0, 1, 'C');
+$pdf->Cell(0,21, 'If you have any questions concerning this tax invoice, Contact us on support@shopacer.co.za or 010 020 8606', 0, 1, 'C');
 $pdf->SetFont('Arial', 'I', 8);
 // Page number
-$pdf->Cell(0, 10, 'Page ' . $pdf->PageNo(), 0, 0, 'C');
+$pdf->Cell(0, 18, 'Page ' . $pdf->PageNo(), 0, 0, 'C');
 
 $pdf->Output();
-
-
+ 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
