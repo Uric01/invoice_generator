@@ -57,7 +57,7 @@ $x = 0;
 
 for($i = 0; $i < count($arr); $i++)
 {
-
+//////
 
     $pdf->cell(22, 5,  $arr[$i]['qty'], 0, 0, 'C');
     $pdf->cell(34, 5,$arr[$i]['SKU'], 0, 0);
@@ -67,7 +67,7 @@ for($i = 0; $i < count($arr); $i++)
    
 $x += $i * 2;
 
-}
+} 
 
 
 $pdf->Line(12, 200+$x, 197, 200+$x);
