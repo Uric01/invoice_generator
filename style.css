@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: whitesmoke;
+}
+
+
+.container {
+    position:absolute;
+    top: 85%;
+    left: 50%;
+    height: 1150px;
+    transform: translate(-50%, -50%);
+    width: 1100px;
+    background: aquamarine;
+    border-radius: 10px;
+}
+
+hr{
+    height:2px;
+    border-width:0;
+    color:gray;
+    background-color:gray;
+}
+
+.invoice-to{
+    
+    width: 50%;
+    float:left;
+    height: 50vh;
+    background: yellowgreen;
+}
+.invoice-from{
+   
+    width: 50%;
+    float:right;
+    height: 50vh;
+    background: yellow;
+}
+.date{
+    width: 50%;
+    float:left;
+    height: 10vh;
+    background: goldenrod;
+}
+.tax-invoice{
+    width: 50%;
+    float:right;
+    height: 10vh;
+    background: orange;
+}
+.total{
+    width: 100%;
+    text-align: right;
+    height: 20vh;
+    background: peachpuff;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    display: inline;
+    margin: 10px;
+  }
+  li:nth-child(2) {
+     margin-left:150px;
+  }
+  li:nth-child(3) {
+     margin-left:150px;
+  }
+  li:nth-child(4) {
+     margin-left:180px;
+  }
+  li:nth-child(5) {
+     margin-left:180px;
+  }
+  .total-vat{
+    width: 100%;
+    background: lemonchiffon;
+    height: 20vh;
+    text-align: right;
+  }
+  .bank{
+    width: 50%;
+    float:left;
+    height: 35vh;
+    background: pink;
+   }
+   .info{
+    width: 50%;
+    float:right;
+    height: 35vh;
+    background: powderblue;
+}
+   
+  
